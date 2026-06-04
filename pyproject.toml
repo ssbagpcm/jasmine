@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jasmine-cli"
+version = "0.1.0"
+description = "Jasmine: a compact terminal coding agent with streaming, precise patches, plans, context compaction, command approval, and token usage tracking."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "rich>=13.7.0",
+  "pygments>=2.17.0",
+  "prompt_toolkit>=3.0.43",
+  "openai>=1.56.0",
+  "pyte>=0.8.2",
+  "tomli>=2.0.1; python_version < '3.11'",
+]
+
+[project.optional-dependencies]
+web = [
+  "curl_cffi>=0.7.0",
+  "readability-lxml>=0.8.0",
+  "html2text>=2024.0",
+  "beautifulsoup4>=4.12.0",
+  "ddgs>=9.0.0",
+]
+
+[project.scripts]
+jasmine = "jasmine.main:main"
+
+[tool.setuptools.packages.find]
+include = ["jasmine*"]
+
+[tool.setuptools.package-data]
+jasmine = ["skills/*/SKILL.md"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "C4", "UP", "SIM"]
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true
+warn_unused_configs = true
+warn_redundant_casts = true
